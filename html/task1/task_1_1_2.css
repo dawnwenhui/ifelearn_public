@@ -1,0 +1,11 @@
+div.web-head{
+    background-color: #333333;
+    width: 100%;
+    height:auto;
+}
+
+div.web-logo{
+    display: inline-block;
+    background:url("baidu.png") no-repeat 10px 20px;
+    z-index: 200;
+}
