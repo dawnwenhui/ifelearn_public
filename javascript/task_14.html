@@ -31,12 +31,62 @@ var aqiData = [
   遍历读取aqiData中各个城市的数据
   将空气质量指数大于60的城市显示到aqi-list的列表中
   */
-  for(var i=0;i<=aqiData.length;i++){
-    if(aqiData[i][2]>60){
-      
-        document.getElementById("aqi-list).innerHTML=""    
+  var aqiData = [
+      ["北京", 90],
+      ["上海", 50],
+      ["福州", 10],
+      ["广州", 50],
+      ["成都", 90],
+      ["西安", 100]
+  ];
+  //1、数组序号 0 1 2 ... length-1
+  //冒泡排序
+  // for(var j=0;j<aqiData.length-1;j++)
+  // {
+  //   for(var i=aqiData.length-1;i>j;i--){
+  //     var changeData = [];
+  //     if(aqiData[i][1]>=aqiData[i-1][1]){
+  //         changeData = aqiData[i];
+  //         aqiData[i] = aqiData[i-1];
+  //         aqiData[i-1]=changeData;
+  //     }
+  //   }
+  // }
+  
+  //直接插入排序 
+    var containt = aqiData[0];   
+    for(var i=1; i<=aqiData.length-1;i++){  
+        if(aqiData[i][1]>aqiData[i-1][1]){
+            var j = i-1;
+            var x = aqiData[i][1];
+            aqiData[i][1] = aqiData[i-1][1];
+            while(x >aqiData[j][1]){
+              aqiData[j+1][1] = aqiData[j][1];
+              j--;
+            }
+            aqiData[j+1][1] = x;
+        }
     }
-  }
+    
+    //3、数字不可以加单引号 '1'
+    for(var i=0;i<aqiData.length;i++){
+        var num = null;
+        if(aqiData[i][1]<40){
+            return true;
+        }
+        switch(i){
+            case 0: num="一";break;
+            case 1: num="二";break;
+            case 2: num="三";break;
+            case 3: num="四";break;
+            case 4: num="五";break;
+            case 5: num="六";break;          
+        }
+        //2、innerHTML会覆盖以前innerHTML的
+        var html = document.getElementById("aqi-list").innerHTML;
+        //4、i换成一二三了就不是123了所以aqiData[一]undefined    
+        document.getElementById("aqi-list").innerHTML=html+"<li>第"+num+"名："+aqiData[i][0]+"，"+aqiData[i][1]+"</li>";
+    }
 
 })();
 
